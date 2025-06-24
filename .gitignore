@@ -1,4 +1,18 @@
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-plots_part*/**/*.svg
-part3_data.zip
+
+# macOS Finder files
+.DS_Store
+
+# VSCode / JetBrains
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
