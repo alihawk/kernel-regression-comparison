@@ -1,0 +1,4 @@
+__pycache__/
+*.py[cod]
+plots_part*/**/*.svg
+part3_data.zip
