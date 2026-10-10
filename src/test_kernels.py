@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import patch
 import numpy as np
 
-from hw_kernels import SVR, RBF, Polynomial, \
+from kernels import SVR, RBF, Polynomial, \
     KernelizedRidgeRegression
 
 

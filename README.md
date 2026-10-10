@@ -1,62 +1,35 @@
 # Kernel Regression Comparison
 
-This project implements and compares two kernelized regression methods— **Kernel Ridge Regression (KRR)** and **ε-Support Vector Regression (SVR)**— using the Polynomial kernel, RBF kernel, and a custom 2-gram spectrum kernel for structured string data.
+Kernel ridge regression (KRR) and ε-support vector regression (SVR), implemented in NumPy with cvxopt solving the SVR quadratic program, and compared on three problems: a noisy sine curve, a housing price dataset, and string data using a custom 2-gram spectrum kernel.
 
-## 📁 Project Layout
+![KRR and SVR fits on sine data with an RBF kernel](plots/plots_part1/rbf_fit.svg)
 
-```
-├── data/
-│   ├── sine.csv                # Part 1 data
-│   ├── housing2r.csv          # Part 2 data
-│   ├── part3_data.csv         # Part 3 full dataset
-│   ├── part3_train.csv        # Part 3 train split
-│   └── part3_test.csv         # Part 3 test split
-├── plots_part1/               # SVG plots from Part 1
-├── plots_part2/               # SVG plots from Part 2
-├── plots_part3/               # SVG plots from Part 3
-├── report/
-│   └── report.pdf             # Your write-up
-├── src/
-│   ├── hw_kernels.py          # All implementations & pipelines
-│   └── test_kernels.py        # Unit tests (pytest)
-├── .gitignore
-└── README.md
-```
+## Experiments
 
-## 🚀 Getting Started
+- **Sine data**: KRR and SVR with polynomial and RBF kernels, showing which points SVR keeps as support vectors.
+- **Housing prices** (`housing2r.csv`): a sweep over kernel hyperparameters, comparing a fixed regularization strength with one tuned by cross-validation, and tracking test MSE and the number of support vectors.
+- **String data**: a 2-gram spectrum kernel against a simple character-count baseline, compared on test MSE.
 
-1. **Install prerequisites**
+The methods, results and discussion are in [`report/report.pdf`](report/report.pdf).
+
+## Running it
 
 ```bash
 pip install numpy pandas matplotlib scikit-learn cvxopt pytest
-```
-
-2. **Run all three parts & generate plots**
-
-```bash
 cd src
-python hw_kernels.py
-```
-
-The scripts will save SVGs to `../plots_part1/`, `../plots_part2/`, and `../plots_part3/`.
-
-3. **Run the unit tests**
-
-```bash
-cd src
+python kernels.py         # runs all three experiments and saves the plots
 pytest test_kernels.py
 ```
 
-## 🛠️ Usage Details
+## Layout
 
-* **Part 1**: Fits sine data with KRR & SVR (Polynomial & RBF kernels), highlights support vectors.
-* **Part 2**: Sweeps kernel hyperparameters on `housing2r.csv`, compares fixed vs CV-tuned regularization, and plots MSE & SV counts.
-* **Part 3**: Builds a 2-gram string kernel vs naive character counts, compares test MSE.
+```
+data/       sine, housing and string datasets
+plots/      generated SVG plots for each experiment
+report/     write-up (PDF)
+src/        kernels.py (models and experiments), test_kernels.py
+```
 
-## 📄 Report
+## License
 
-See `report/report.pdf` for methodology, quantitative results, and discussion.
-
-## 📜 License
-
-Released under the MIT License.
+MIT
